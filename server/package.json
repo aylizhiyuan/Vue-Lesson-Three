@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel index.js -d dist",
+    "start": "npm run build && nodemon dist/index.js",
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +14,10 @@
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "0.0.16",
     "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.18.6"
   }
 }
