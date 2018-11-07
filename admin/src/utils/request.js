@@ -7,7 +7,6 @@ const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 5000 // 请求超时时间
 })
-
 // request拦截器
 service.interceptors.request.use(
   config => {
@@ -25,7 +24,7 @@ service.interceptors.request.use(
 
 // response 拦截器
 service.interceptors.response.use(
-  response =>{
+  response => {
     const res = response.data
     //这里面可以设置自定义的返回错误
     return response.data
