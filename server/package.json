@@ -7,7 +7,7 @@
     "babel-node": "babel-node --presets=/*a*/ --ignore='foo|bar|baz'",
     "build": "babel index.js -d dist",
     "serve": "npm run build && nodemon dist/index.js",
-    "dev":"nodemon index.js --exec babel-node"
+    "dev": "nodemon index.js --exec babel-node"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,8 @@
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "0.0.16",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "mysql": "^2.16.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
