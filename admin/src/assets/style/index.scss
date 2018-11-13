@@ -1,6 +1,147 @@
+@import "font";
+@import "variable";
+
 .icon {
-  width: 1em; height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+html {
+    font: {
+        size: 62.5%;
+        family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+        weight: 400;
+    }
+    color: $word;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    min-width: 1024px;
+    min-height: 900px;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+h3, h4, h5, h6 {
+    font-size: 1.6rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+#app {
+    height: 100%;
+}
+
+.main {
+    margin-left: 48px;
+    background: $background;
+    padding: .5em 6em;
+    height: calc(100% - 48px);
+    h2 {
+        font-weight: 400;
+        span {
+            color: $special;
+        }
+    }
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.editor-toolbar {
+    @include flex($justify: flex-start);
+    height: 40px;
+    padding-left: 5px;
+    font-size: 1.6rem;
+    color: #adb5bc;
+    background: $white;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid $special;
+    a {
+        margin-right: 10px;
+        padding: .2em;
+        border-radius: 2px;
+        border: 1px solid $white;
+        &:hover {
+            border: 1px solid #adb5bc;
+        }
+    }
+    .separator {
+        font-style: normal;
+        margin-right: 10px;
+    }
+    .fa-question-circle {
+        color: #adb5bc;
+    }
+}
+
+.btn-container {
+    button {
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    button:last-of-type {
+        margin-right: 0;
+    }
+    .delete {
+        margin-right: 10px;
+        color: $word;
+        border: 1px solid $word;
+        &:hover {
+            color: $base;
+            border: 1px solid $base;
+        }
+    }
+    .not-del {
+        color: $white;
+        background: $base;
+        border: 1px solid $base;
+        &:hover {
+            background: $white;
+            color: $base;
+            border: 1px solid $base;
+        }
+    }
+}
+
+.tag, .tag-edit {
+    sup {
+        display: inline-block;
+        visibility: hidden;
+        cursor: pointer;
+        color: $white;
+        line-height: 10px;
+        text-align: center;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: $special;
+    }
+    &:hover > sup {
+        visibility: visible;
+    }
+}
+
+.tag-input {
+    margin-bottom: 5px;
+    width: 80px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid $special;
+    outline: none;
+    color: $word;
 }
