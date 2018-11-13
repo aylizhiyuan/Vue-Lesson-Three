@@ -10,7 +10,5 @@ const actions = {
   }
   //这里写登出
 
-  //这里写前端登出
-
 }
 export default actions

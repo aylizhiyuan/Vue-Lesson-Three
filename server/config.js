@@ -8,7 +8,7 @@ export const db = {
 export const dbName = {
     database:'lzy_blog'
 }
-export const base_API = 'api/'
+export const base_API = '/api'
 
 export const secret = 'lzy_blog'
 
