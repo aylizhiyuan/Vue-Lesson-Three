@@ -46,10 +46,6 @@ class UserController {
                  message:'用户名不存在,请重新填写.....'
              }
          }
-
-
-
-
     }
 }
 export default new UserController()

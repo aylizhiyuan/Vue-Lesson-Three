@@ -34,8 +34,8 @@
         required: () => '您的密码不能为空'
       }
     }
-  };
-  Validator.localize('en',dict); // changes the locale
+  }
+  Validator.localize('en',dict) // changes the locale
     //引入发请求的模块
     import request from '@/utils/request'
     export default {
@@ -76,7 +76,7 @@
               }
             }).catch(err=>{
               //如果发请求的时候有错误,把错误扔到控制台里面去
-              console.log(err);
+              console.log(err)
             })
           }else{
             this.$notify({
