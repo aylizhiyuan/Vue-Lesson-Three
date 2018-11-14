@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jsonwebtoken": "^8.3.0",
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "0.0.16",
     "koa-router": "^7.4.0",
+    "md5": "^2.2.1",
     "mysql": "^2.16.0"
   },
   "devDependencies": {
