@@ -30,7 +30,7 @@ service.interceptors.response.use(
     //这里面可以设置自定义的返回错误
     if(res.code === 40001){
       //token已过期的状态码
-      alert('token已经过期');
+      alert('token已经过期,请重新登录！！！！');
       removeToken()
       store.commit('SET_TOKEN','')
       location.reload()
