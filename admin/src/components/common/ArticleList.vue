@@ -41,6 +41,21 @@
       }).catch(err=>{
         console.log(err)
       })
+    },
+    methods:{
+      updateList(updateId){
+        request({
+          method:"get",
+          url:`/articles/${updateId}`
+        }).then(res=>{
+          const article = res[0]
+          article.createTime = moment(article.createTime).format('YYYY年-MM月-DD日 HH:mm:ss')
+          article.isChosen = true
+          this.articleList.unshift(article)
+        }).catch(err=>{
+          console.log(err);
+        })
+      }
     }
   }
 </script>

@@ -22,4 +22,8 @@ router.post('/login',UserController.login)
 router.get('/logout',checkToken,UserController.logout)
 //获取所有的文章
 router.get('/articles',checkToken,ArticleController.getArticles)
+//添加一篇新的文章
+router.post('/articles/add',checkToken,ArticleController.addArticle)
+//查询一下最新发布的那片文章的详细信息
+router.get('/articles/:id',checkToken,ArticleController.getOneArticle)
 export default router
