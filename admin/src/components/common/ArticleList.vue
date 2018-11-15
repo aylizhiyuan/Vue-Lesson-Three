@@ -12,6 +12,7 @@
 <script>
   import request from '@/utils/request'
   import moment from 'moment'
+  import { mapState,mapMutations } from 'vuex'
   export default {
     name: "ArticleList",
     data(){
@@ -20,8 +21,14 @@
         activeIndex:-1
       }
     },
+    //把全局的vuex里面的state和mutations放到计算属性中...
+    computed:{
+      ...mapState(['id','title','tags','content','isPublished']),
+      ...mapMutations(['SET_CURRENT_ARTICLE'])
+      //...mapActions([''])
+    },
     //当该组件创建的时候自动执行里面的请求
-    mounted(){
+    created(){
       request({
         method:'get',
         url:'/articles'
@@ -37,7 +44,6 @@
     }
   }
 </script>
-
 <style type="text/scss"  lang="scss" scoped>
   /*记得引入全局变量的文件*/
   @import '../../assets/style/variable';
