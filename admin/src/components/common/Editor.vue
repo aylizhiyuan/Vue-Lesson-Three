@@ -1,14 +1,14 @@
 <template>
     <div class="editor">
-      <input type="text" class="title" id="title">
+      <input type="text" class="title" id="title" v-model="title">
       <div class="operate-bar">
         <section class="tag-container">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-tag"></use>
           </svg>
           <ul class="tags">
-            <li class="tag">
-              标签
+            <li class="tag" v-for="tag,index in tags" :key="index">
+              {{tag}}
               <sup>x</sup>
             </li>
           </ul>
@@ -30,19 +30,28 @@
     //引入编辑器
     import 'simplemde/dist/simplemde.min.css'
     import SimpleMDE from 'simplemde'
+    import { mapState } from 'vuex'
     export default {
         name: "Editor",
         data(){
           return {
-            simplemde:'',
+            simplemde:'', //编辑器
+            tags:''
           }
         },
+        computed:{
+          ...mapState(['id','title','content','isPublished']),
+        },
         mounted(){
+          this.tags = this.$store.getters.getTags;
           this.simplemde = new SimpleMDE({
             placeholder:'Talk to me , what are you say...',
             spellChecker:false,
             toolbarTips: false,
           });
+          //将vuex里面的正在编辑的文章的相关信息输出到编辑器里面
+
+
         }
     }
 </script>
