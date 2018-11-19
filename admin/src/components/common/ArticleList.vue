@@ -1,6 +1,5 @@
 <template>
     <div>
-      {{title}}
       <ul class="list">
         <li class="article"  :class="{active: activeIndex === index, published: isPublished === 1}" v-for="{title,createTime,isPublished,isChosen},index in articleList" @click="select(index)">
           <header>{{title}}</header>
@@ -68,6 +67,29 @@
         this.SET_CURRENT_ARTICLE(this.articleList[index])
       },
       ...mapMutations(['SET_CURRENT_ARTICLE'])
+    },
+    //监听vuex数据的变化，如果发生变化，更新articleList数据
+    watch:{
+      title(val){
+        if(this.articleList.length !== 0){
+          this.articleList[this.activeIndex].title = val
+        }
+      },
+      tags(val){
+        if(this.articleList.length !== 0){
+          this.articleList[this.activeIndex].tags = val
+        }
+      },
+      content(val){
+        if(this.articleList.length !== 0){
+          this.articleList[this.activeIndex].content = val
+        }
+      },
+      isPublished(val){
+        if(this.articleList.length !== 0){
+          this.articleList[this.activeIndex].isPublished = val
+        }
+      }
     }
   }
 </script>

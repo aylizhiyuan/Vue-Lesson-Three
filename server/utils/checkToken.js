@@ -14,6 +14,7 @@ export default async function(ctx,next){
                 message:'token已过期,请重新登录'
             }
         }else{
+            console.log(err);
             ctx.throw(500) //直接抛出500的错误,在所有加上checkToken的代码里面.
             //抛给了前端的response拦截器了....
         }

@@ -12,5 +12,10 @@ class ArticleController {
         const res = await Article.getOneArticle(ctx.params.id)
         ctx.body = res
     }
+    async updateArticle(ctx){
+        const id = ctx.params.id
+        const res = await Article.updateArticle(id,ctx.request.body)
+        ctx.body = res
+    }
 }
 export default new ArticleController()
