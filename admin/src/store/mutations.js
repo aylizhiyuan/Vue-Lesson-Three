@@ -10,7 +10,7 @@ const mutations = {
     state.title = title
   },
   //设置改变tags的方法
-  SET_TGAS:(state,tags)=>{
+  SET_TAGS:(state,tags)=>{
     state.tags = tags
   },
   //设置改变内容的方法

@@ -9,11 +9,11 @@
           <ul class="tags">
             <li class="tag" v-for="tag,index in getTags" :key="index">
               {{tag}}
-              <sup>x</sup>
+              <sup @click="deleteTag(index)">x</sup>
             </li>
           </ul>
-          <input type="text" class="tag-input" id="tag-input" @change="autosave">
-          <span class="tag-add"> + </span>
+          <input v-if="showTags" type="text" class="tag-input" id="tag-input" @keydown.enter="addTag">
+          <span v-else class="tag-add" @click="addTag"> + </span>
         </section>
         <section class="btn-container">
           <button id="delete" class="delete">删除文章</button>
@@ -38,6 +38,7 @@
         data(){
           return {
             simplemde:'', //编辑器
+            showTags:false,//默认是不显示的
           }
         },
         computed:{
@@ -79,12 +80,30 @@
               this.$store.dispatch('saveArticle',{
                 id:this.id,
                 title:this.title,
-                tags:this.tags,
+                tags:this.getTags.join(','),
                 content:this.simplemde.value(),
                 isPublished:this.isPublished
               })
             }
-          },1000)
+          },1000),
+          //删除标签
+          deleteTag(index){
+            this.getTags.splice(index,1)
+            this.autosave()
+          },
+          //添加标签
+          addTag(){
+            //input显示的时候，会执行这个 。。。
+            if(this.showTags){
+              const newTag = document.querySelector('#tag-input').value
+              this.getTags.push(newTag)
+              //每次按下enter键的时候，会自动
+              this.autosave()
+            }
+            //只是一个单纯的切换功能，第一次点击+的时候显示input表单，第二次
+            //在input表单中输入内容按下enter键就隐藏表单.
+            this.showTags = !this.showTags
+          }
         }
     }
 </script>

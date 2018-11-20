@@ -1,5 +1,5 @@
 import query from '../utils/query'
-
+import eacape from '../utils/eacape'
 class ArticleModel {
     async getAllArticles(){
         return await query("SELECT * FROM ARTICLE ORDER BY createTime DESC")
@@ -11,7 +11,7 @@ class ArticleModel {
         return await query(`SELECT * FROM ARTICLE WHERE id=${id}`)
     }
     async updateArticle(id,{title,tags,content,isPublished}){
-        return await query(`UPDATE ARTICLE SET title='${title}', tags='${tags}',content='${content}' WHERE id='${id}'`)
+        return await query(eacape`UPDATE ARTICLE SET title=${title}, tags=${tags},content=${content} WHERE id=${id}`)
     }
 }
 export default new ArticleModel()
