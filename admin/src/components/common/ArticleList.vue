@@ -1,6 +1,5 @@
 <template>
     <div>
-      {{tags}}
       <ul class="list">
         <li class="article"  :class="{active: activeIndex === index, published: isPublished === 1}" v-for="{title,createTime,isPublished,isChosen},index in articleList" @click="select(index)">
           <header>{{title}}</header>
@@ -24,7 +23,7 @@
     },
     //把全局的vuex里面的state和mutations放到计算属性中...
     computed:{
-      ...mapState(['id','title','tags','content','isPublished']),
+      ...mapState(['id','title','tags','content','isPublished','toggleDelete']),
     },
     //当该组件创建的时候自动执行里面的请求
     created(){
@@ -89,6 +88,24 @@
       isPublished(val){
         if(this.articleList.length !== 0){
           this.articleList[this.activeIndex].isPublished = val
+        }
+      },
+      toggleDelete(val){
+        //如果这个值有变化，从false变为true,说明当前文章是需要删除的.
+        this.articleList.splice(this.activeIndex,1)
+        if(this.activeIndex === this.articleList.length){
+          this.activeIndex --
+        }
+        if(this.articleList.length !== 0){
+          this.SET_CURRENT_ARTICLE(this.articleList[this.activeIndex])
+        }else{
+          this.SET_CURRENT_ARTICLE({
+            id:'',
+            title:'',
+            tags:'',
+            content:'',
+            isPublished:''
+          })
         }
       }
     }
