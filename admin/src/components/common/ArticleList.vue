@@ -95,11 +95,10 @@
               article.isChosen = false
             }
           }
-          //这里，意思是将最后一篇文章选中作为当前正在编辑的文章
+          //这里，意思是将第一篇文章选中作为当前正在编辑的文章
           for(let [index,article] of this.articleList.entries()){
             if(article.isChosen){
               this.activeIndex = index
-              console.log(this.activeIndex);
               this.SET_CURRENT_ARTICLE(this.articleList[this.activeIndex])
               //发现第一篇文章后就跳出了，所有就不用管第二篇文章了
               break

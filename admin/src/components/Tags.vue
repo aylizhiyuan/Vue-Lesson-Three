@@ -13,7 +13,7 @@
             <section class="tag">
               <h5>标签</h5>
               <ul class="tags" @click="chooseTag($event)">
-                <li class="tag" :class="{chosen:chosenTags.indexOf(tag) > -1}" v-for="tag,index in tags" :key="tag">{{tag}}</li>
+                <li class="tag" :class="{chosen:chosenTags.indexOf(tag) > -1}" v-for="tag,index in tags" :key="tag">{{tag}}</li>dsdfsdf
               </ul>
             </section>
             <section class="chosen-tag" v-show="chosenTags.length">
