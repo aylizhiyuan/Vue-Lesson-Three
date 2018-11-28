@@ -12,11 +12,11 @@
           <div class="tag-list">
             <section class="tag">
               <h5>标签</h5>
-              <ul class="tags">
-                <li class="tag">标签列表</li>
+              <ul class="tags" @click="chooseTag($event)">
+                <li class="tag" :class="{chosen:chosenTags.indexOf(tag) > -1}" v-for="tag,index in tags" :key="tag">{{tag}}</li>
               </ul>
             </section>
-            <section class="chosen-tag">
+            <section class="chosen-tag" v-show="chosenTags.length">
               <h5>修改标签</h5>
               <ul class="tags">
                 <li class="tag-edit">
@@ -47,6 +47,30 @@
       ArticleList,
       Editor
     },
+    data(){
+      return {
+        tags:[],
+        chosenTags:[]
+      }
+    },
+    methods:{
+      chooseTag(evt){
+        if(evt.target.tagName === 'LI'){
+          const value = evt.target.innerHTML
+          //第一次选中它，并扔到数组里面去，第二次将它从数组当中去掉
+          if(!evt.target.classList.contains('chosen')){
+            this.chosenTags.push(value)
+          }else{
+            this.chosenTags = this.chosenTags.filter(val=>val !== value)
+          }
+        }
+        //当你选中特定的标签的时候，更新文章列表显示的内容
+        this.$refs.articleList.updateListByTags(this.chosenTags);
+      },
+      getTags(tags){
+        this.tags.push(...tags)
+      }
+    }
   }
 </script>
 

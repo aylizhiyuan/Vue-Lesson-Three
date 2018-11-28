@@ -40,6 +40,18 @@
         if(this.articleList.length !== 0){
           this.SET_CURRENT_ARTICLE(this.articleList[0])
           this.activeIndex = 0;
+          //将所有的标签查出来，集中放在tags里面
+          const tags = [];
+          for(let article of this.articleList){
+            if(article.tags){
+              for(let tag of article.tags.split(',')){
+                if(tags.indexOf(tag) === -1){
+                  tags.push(tag)
+                }
+              }
+            }
+          }
+          this.$emit('tags',tags);
         }
       }).catch(err=>{
         console.log(err)
