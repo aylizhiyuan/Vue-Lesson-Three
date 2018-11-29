@@ -13,15 +13,15 @@
             <section class="tag">
               <h5>标签</h5>
               <ul class="tags" @click="chooseTag($event)">
-                <li class="tag" :class="{chosen:chosenTags.indexOf(tag) > -1}" v-for="tag,index in tags" :key="tag">{{tag}}</li>dsdfsdf
+                <li class="tag" :class="{chosen:chosenTags.indexOf(tag) > -1}" v-for="tag,index in tags" :key="tag">{{tag}}</li>
               </ul>
             </section>
             <section class="chosen-tag" v-show="chosenTags.length">
               <h5>修改标签</h5>
               <ul class="tags">
-                <li class="tag-edit">
-                  <input type="text" class="tag-input">
-                  <sup>x</sup>
+                <li class="tag-edit" v-for="tag,index in chosenTags">
+                  <input type="text" :value="tag" @change="changeTag($event,index)" class="tag-input">
+                  <sup @click="deleteTag(tag,index)">x</sup>
                 </li>
               </ul>
             </section>
@@ -69,6 +69,25 @@
       },
       getTags(tags){
         this.tags.push(...tags)
+      },
+      changeTag(evt,i){
+        const oldVal = this.chosenTags[i];
+        const newVal = evt.target.value;
+        if(!newVal){
+          alert('请直接删除tag!')
+          evt.target.value = oldVal;
+          return
+        }
+        const tagIndex = this.tags.indexOf(oldVal);
+        //获取tags中的index,使用未修改的tag值
+        if(this.tags.indexOf(newVal) !== -1){
+
+        }
+
+
+      },
+      deleteTag(tag,i){
+
       }
     }
   }
