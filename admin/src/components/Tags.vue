@@ -78,10 +78,17 @@
           evt.target.value = oldVal;
           return
         }
+        //当前修改标签的在tags里面的下标.
         const tagIndex = this.tags.indexOf(oldVal);
-        //获取tags中的index,使用未修改的tag值
+        //所有标签的列表中是否有这个即将要写入的新值，如果没有的话
         if(this.tags.indexOf(newVal) !== -1){
-
+           //如果你要写的值跟标签列表有重复的话
+            this.chosenTags.splice(i,1)
+            this.tags.splice(tagIndex,1)
+        }else{
+          //如果写的值不重复的话，就直接进行替换
+            this.chosenTags.splice(i,1,newVal)
+            this.tags.splice(tagIndex,1,newVal);
         }
 
 
