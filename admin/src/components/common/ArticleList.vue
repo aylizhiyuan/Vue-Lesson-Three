@@ -13,6 +13,7 @@
   import request from '@/utils/request'
   import moment from 'moment'
   import { mapState,mapMutations } from 'vuex'
+  import actions from "../../store/actions";
   export default {
     name: "ArticleList",
     data(){
@@ -86,9 +87,23 @@
               //如果新的值在该文章中已经有了，则直接删除旧值，否则将旧值修改为新值
               if(newIndex === -1){
                 //这个应该是新值在文章中已经有了
-                console.log('替换');
+                //console.log('替换');
+                tags[index]  = newVal;
+                article.tags = tags.join(',')
+                console.log(typeof article.tags);
+                request({
+                  method:'put',
+                  url:`/tags/${article.id}`,
+                  data:{
+                    tags:article.tags
+                  }
+                }).then(res=>{
+                  console.log(res);
+                }).catch(err=>{
+                  console.log(err)
+                })
               }else{
-                console.log('删除');
+                //console.log('删除');
               }
             }
           }
