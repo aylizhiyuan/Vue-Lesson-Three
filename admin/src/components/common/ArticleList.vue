@@ -40,7 +40,7 @@
         if(this.articleList.length !== 0){
           this.SET_CURRENT_ARTICLE(this.articleList[0])
           this.activeIndex = 0;
-          //将所有的标签查出来，集中放在tags里面
+          //将所有的标签查出来，集中放在tags里面，这里，极有可能出现两篇文章相同的标签，所以，这个时候，tags里面的标签是不重复的.
           const tags = [];
           for(let article of this.articleList){
             if(article.tags){
@@ -51,6 +51,7 @@
               }
             }
           }
+          //console.log(tags);可以看到是不重复的添加的.
           this.$emit('tags',tags);
         }
       }).catch(err=>{
@@ -72,6 +73,21 @@
         }).catch(err=>{
           console.log(err);
         })
+      },
+      updateArticleTag(oldVal,newVal,chosenTags){
+        for(let [i,article] of this.articleList.entries()){
+          //循环所有的文章
+          if(article.tags.length){
+            const tags = article.tags.split(',');
+            const index = tags.indexOf(oldVal);
+            if(index !== -1){
+              //旧值不在
+
+            }
+
+          }
+        }
+
       },
       updateListByTags(chosenTags){
         //如果没有选中任何标签，直接显示所有的文章.

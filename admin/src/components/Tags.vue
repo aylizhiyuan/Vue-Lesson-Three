@@ -82,16 +82,22 @@
         const tagIndex = this.tags.indexOf(oldVal);
         //所有标签的列表中是否有这个即将要写入的新值，如果没有的话
         if(this.tags.indexOf(newVal) !== -1){
-           //如果你要写的值跟标签列表有重复的话
-            this.chosenTags.splice(i,1)
-            this.tags.splice(tagIndex,1)
+          //如果你要写的值跟标签列表有重复的话
+          //从选中的标签列表中将当前正在写的标签删除掉
+          this.chosenTags.splice(i,1)
+          //从所有的标签列表中将正在写的重复的标签删除掉
+          //console.log(this.tags);
+          //console.log(tagIndex);
+          this.tags.splice(tagIndex,1)
         }else{
           //如果写的值不重复的话，就直接进行替换
-            this.chosenTags.splice(i,1,newVal)
-            this.tags.splice(tagIndex,1,newVal);
+          this.chosenTags.splice(i,1,newVal)
+          this.tags.splice(tagIndex,1,newVal)
         }
-
-
+        //被删除的重复标签会导致所有拥有这个标签的文章无法再使用这个标签
+        //这时候，新的值应该将拥有原始标签的文章列表更新下
+        //如果只是替换的话，也需要将原始标签的文章下的所有标签更改一下
+        this.$refs.articleList.updateArticleTag(oldVal, newVal, this.chosenTags)
       },
       deleteTag(tag,i){
 
