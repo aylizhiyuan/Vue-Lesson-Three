@@ -81,13 +81,18 @@
             const tags = article.tags.split(',');
             const index = tags.indexOf(oldVal);
             if(index !== -1){
-              //旧值不在
-
+              //找到拥有这个旧标签的文章
+              const newIndex = tags.indexOf(newVal);
+              //如果新的值在该文章中已经有了，则直接删除旧值，否则将旧值修改为新值
+              if(newIndex === -1){
+                //这个应该是新值在文章中已经有了
+                console.log('替换');
+              }else{
+                console.log('删除');
+              }
             }
-
           }
         }
-
       },
       updateListByTags(chosenTags){
         //如果没有选中任何标签，直接显示所有的文章.

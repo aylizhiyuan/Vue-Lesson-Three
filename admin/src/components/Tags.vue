@@ -94,9 +94,9 @@
           this.chosenTags.splice(i,1,newVal)
           this.tags.splice(tagIndex,1,newVal)
         }
-        //被删除的重复标签会导致所有拥有这个标签的文章无法再使用这个标签
-        //这时候，新的值应该将拥有原始标签的文章列表更新下
-        //如果只是替换的话，也需要将原始标签的文章下的所有标签更改一下
+        //两种情况：
+        //1.旧标签的某一个篇文章新值已经存在了,直接将旧值删除.
+        //2.旧标签的某一篇文章新值不存在，将旧值替换成新值.
         this.$refs.articleList.updateArticleTag(oldVal, newVal, this.chosenTags)
       },
       deleteTag(tag,i){
